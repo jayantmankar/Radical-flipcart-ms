@@ -27,7 +27,7 @@ pipeline {
         stage('Building  Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh 'docker build -t satyam88/flipkart-ms .'
+                sh 'docker build -t jayantmankar/flipkart-ms .'
                 sh 'docker build -t flipkart-ms .'
                 echo 'Completed  Building Docker Image'
             }
