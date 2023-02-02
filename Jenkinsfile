@@ -27,7 +27,7 @@ pipeline {
         stage('Building  Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh 'docker build -t satyam88/flipkart-ms .'
+                sh 'docker build -t jayantmankar/flipkart-ms .'
                 sh 'docker build -t flipkart-ms .'
                 echo 'Completed  Building Docker Image'
             }
@@ -43,9 +43,9 @@ pipeline {
            steps {
               script {
                  withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]){
-                 sh 'docker login docker.io -u satyam88 -p ${dockerhubCred}'
+                 sh 'docker login docker.io -u jayantmankar -p ${dockerhubCred}'
                  echo "Push Docker Image to DockerHub : In Progress"
-                 sh 'docker push satyam88/yatra-ms:latest'
+                 sh 'docker push jayantmankar/flipkart-ms:latest'
                  echo "Push Docker Image to DockerHub : In Progress"
                  sh 'whoami'
                  }
@@ -56,15 +56,15 @@ pipeline {
         stage(' Docker Image Push to Amazon ECR') {
            steps {
               script {
-                 withDockerRegistry([credentialsId:'ecr:ap-south-1:ecr-credentials', url:"https://559220132560.dkr.ecr.ap-south-1.amazonaws.com"]){
+                 withDockerRegistry([credentialsId:'ecr:ap-south-1:ecr-credentials', url:"https://277543575200.dkr.ecr.ap-south-1.amazonaws.com"]){
                  sh """
                  echo "List the docker images present in local"
                  docker images
                  echo "Tagging the Docker Image: In Progress"
-                 docker tag yatra-ms:latest 559220132560.dkr.ecr.ap-south-1.amazonaws.com/yatra-ms:latest
+                 docker tag flipkart-ms:latest 277543575200.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest
                  echo "Tagging the Docker Image: Completed"
                  echo "Push Docker Image to ECR : In Progress"
-                 docker push 559220132560.dkr.ecr.ap-south-1.amazonaws.com/yatra-ms:latest
+                 docker push 277543575200.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest
                  echo "Push Docker Image to ECR : Completed"
                  """
                  }
