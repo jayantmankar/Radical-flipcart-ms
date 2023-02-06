@@ -42,8 +42,8 @@ pipeline {
         stage(' Docker push to Docker Hub') {
            steps {
               script {
-                 withCredentials([string(credentialsId: 'DockerHub', variable: 'DockerHub')]){
-                 sh 'docker login docker.io -u jayantmankar -p ${DockerHub}'
+                 withCredentials([string(credentialsId: 'jayantmankar', variable: 'jayantmankar')]){
+                 sh 'docker login docker.io -u jayantmankar -p ${jayantmankar}'
                  echo "Push Docker Image to DockerHub : In Progress"
                  sh 'docker push jayantmankar/flipkart-ms:latest'
                  echo "Push Docker Image to DockerHub : In Progress"
