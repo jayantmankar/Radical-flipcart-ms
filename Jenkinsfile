@@ -74,7 +74,7 @@ pipeline {
            steps {
               script {
               withCredentials([usernamePassword(credentialsId: 'Nexuscreds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-              sh 'docker login http://3.6.89.35:8081/repository/flipkart-ms/ -u admin -p ${PASSWORD}'
+              sh 'docker login http://3.6.89.35:8085/repository/flipkart-ms/ -u admin -p ${PASSWORD}'
               echo "Push Docker Image to Nexus : In Progress"
               sh 'docker tag flipkart-ms 3.6.89.35:8085/flipkart-ms:latest'
               sh 'docker push 3.6.89.35:8085/flipkart-ms'
