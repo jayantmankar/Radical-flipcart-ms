@@ -52,7 +52,6 @@ pipeline {
               }
             }
         }
-
         stage(' Docker Image Push to Amazon ECR') {
            steps {
               script {
