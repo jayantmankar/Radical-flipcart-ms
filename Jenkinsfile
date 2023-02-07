@@ -43,10 +43,10 @@ pipeline {
            steps {
               script {
                  withCredentials([string(credentialsId: 'jayantmankar', variable: 'jayantmankar')]){
-                 sh 'docker login docker.io -u jayantmankar -p ${jayantmankar}'
+                 sh 'docker login docker.io -u jayantmankar ---password-stdin ${jayantmankar}'
                  echo "Push Docker Image to DockerHub : In Progress"
                  sh 'docker push jayantmankar/flipkart-ms:latest'
-                 echo "Push Docker Image to DockerHub : In Progress"
+                 echo "Push Docker Image to DockerHub : Done"
                  sh 'whoami'
                  }
               }
