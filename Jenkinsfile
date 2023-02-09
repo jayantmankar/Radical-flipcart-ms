@@ -49,7 +49,7 @@ pipeline {
         stage('Docker Image Scanning') {
             steps {
                 echo 'Docker Image Scanning Started'
-                sh 'docker scan  flipkart-ms'
+                sh 'docker scan  flipkart-ms' --file=Dockerfile
                 echo 'Docker Image Scanning Started'
             }
         }
