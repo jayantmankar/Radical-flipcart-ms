@@ -52,7 +52,7 @@ pipeline {
                         echo 'Docker Image Scanning Started'
                         snykSecurity severity: 'critical', snykInstallation: 'snyk', snykTokenId: 'snyk-cred'
                         def variable = sh(
-                                     script: 'snyk container test jayantmankar/flipkart-ms --severity-threshold-critical',
+                                     script: 'snyk container test jayantmankar/flipkart-ms --severity-threshold=critical',
                                      returnStatus: true)
 
                             echo "error code = ${variable}"
