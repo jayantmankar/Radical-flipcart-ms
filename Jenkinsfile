@@ -90,6 +90,22 @@ pipeline {
               }
            }
         }**/
+         stage('Delete Docker Images from Jenkins ') {
+                    steps {
+                        echo 'Docker Image Scanning Started'
+                        sh 'docker rmi 277543575200.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest'
+                        sh 'sleep 2'
+                        sh 'docker rmi jayantmankar/flipkart-ms:latest'
+                        sh 'sleep 2'
+                        sh 'docker rmi flipkart-ms:latest'
+                        sh 'sleep 2'
+                        sh 'docker rmi tomcat:8.0.51-jre8-alpine'
+                        sh 'sleep 2'
+                        echo 'Docker Image Scanning removing from local completed'
+                        echo 'docker images on linux'
+                        sh 'docker images'
+                    }
+                }
     }
 }
 
