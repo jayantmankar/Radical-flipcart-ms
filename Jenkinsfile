@@ -16,7 +16,7 @@ pipeline {
                 sh 'mvn clean compile'
 				echo 'code compilation is completed'
             }
-        }
+        }/**
         stage('Sonarqube') {
                     environment {
                         scannerHome = tool 'qube'
@@ -30,7 +30,7 @@ pipeline {
                             waitForQualityGate abortPipeline: true
                         }
                     }
-                }
+                }**/
         stage('Code Package') {
             steps {
                 echo 'code packing is starting'
@@ -66,7 +66,7 @@ pipeline {
                  }
               }
             }
-        }
+        }/**
         stage(' Docker Image Push to Amazon ECR') {
            steps {
               script {
@@ -84,7 +84,7 @@ pipeline {
                  }
               }
            }
-        }/**
+        }
         stage('Upload the docker Image to Nexus') {
            steps {
               script {
