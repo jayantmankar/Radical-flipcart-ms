@@ -47,21 +47,12 @@ pipeline {
             }
         }
         stage('Docker Image Scanning') {
-                    steps {
-                        script{
-                        echo 'Docker Image Scanning Started'
-                        snykSecurity severity: 'critical', snykInstallation: 'snyk', snykTokenId: 'snyk-cred'
-                        def variable = sh(
-                                     script: 'snyk container test jayantmankar/flipkart-ms --severity-threshold=critical',
-                                     returnStatus: true)
-
-                            echo "error code = ${variable}"
-                            if (variable !=0) {
-                               echo "Alert for vulnerability found"
-                            }
-                        }
-                    }
-                }
+            steps {
+                echo 'Docker Image Scanning Started'
+                sh 'docker scan  flipkart-ms'
+                echo 'Docker Image Scanning Started'
+            }
+        }
         stage(' Docker push to Docker Hub') {
            steps {
               script {
