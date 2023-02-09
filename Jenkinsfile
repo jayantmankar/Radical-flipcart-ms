@@ -49,8 +49,8 @@ pipeline {
         stage('Docker Image Scanning') {
                     steps {
                         echo 'Docker Image Scanning Started'
-                        sysdigImageScan engineCredentialsId: 'sysdig-secure-api-credentials', imageName: "jayantmankar/flipkart-ms"
-                        sysdigImageScan engineCredentialsId: 'sysdig-secure-api-credentials', imageName: "flipkart-ms"
+                        sh 'Docker scan jayantmankar/flipkart-ms'
+                        sh 'Docker scan flipkart-ms'
                         echo 'Docker Image Scanning Started'
                     }
                 }
