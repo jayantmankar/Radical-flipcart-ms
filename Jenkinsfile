@@ -46,6 +46,14 @@ pipeline {
                 echo 'Completed  Building Docker Image'
             }
         }
+        stage('Docker Image Scanning') {
+                    steps {
+                        echo 'Docker Image Scanning Started'
+                        sh 'docker scan jayantmankar/flipkart-ms'
+                        sh 'docker scan flipkart-ms'
+                        echo 'Docker Image Scanning Started'
+                    }
+                }
         stage(' Docker push to Docker Hub') {
            steps {
               script {
