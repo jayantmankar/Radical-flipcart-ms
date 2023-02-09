@@ -32,11 +32,18 @@ pipeline {
                 echo 'Completed  Building Docker Image'
             }
         }
-        stage('Docker Image Scanning') {
+        stage('Sonarqube') {
+            environment {
+                scannerHome = tool 'qube'
+            }
             steps {
-                echo 'Docker Image Scanning Started'
-                sh 'java -version'
-                echo 'Docker Image Scanning Started'
+                withSonarQubeEnv('sonar-server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh 'mvn sonar:sonar'
+                }
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
         stage(' Docker push to Docker Hub') {
@@ -69,7 +76,7 @@ pipeline {
                  }
               }
            }
-        }
+        }/**
         stage('Upload the docker Image to Nexus') {
            steps {
               script {
@@ -82,7 +89,7 @@ pipeline {
                  }
               }
            }
-        }
+        }**/
     }
 }
 
