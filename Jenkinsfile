@@ -49,8 +49,8 @@ pipeline {
         stage('Docker Image Scanning') {
                     steps {
                         echo 'Docker Image Scanning Started'
-                        sh 'docker scan jayantmankar/flipkart-ms'
-                        sh 'docker scan flipkart-ms'
+                        sh 'Docker scan jayantmankar/flipkart-ms'
+                        sh 'Docker scan flipkart-ms'
                         echo 'Docker Image Scanning Started'
                     }
                 }
