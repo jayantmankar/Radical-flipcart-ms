@@ -100,7 +100,6 @@ pipeline {
          stage('Delete Docker Images from Jenkins ') {
                     steps {
                         echo 'Docker Image Scanning Started'
-                        sh 'docker rmi 277543575200.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest'
                         sh 'sleep 2'
                         sh 'docker rmi jayantmankar/flipkart-ms:latest'
                         sh 'sleep 2'
